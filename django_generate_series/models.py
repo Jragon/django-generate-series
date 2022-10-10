@@ -11,6 +11,8 @@ from django.contrib.postgres import fields as pg_models
 from django.db import models
 from django.db.models.sql import Query
 from django.utils.timezone import datetime as datetimetz
+from django_cte import CTEManager, CTEQuerySet
+from django_cte.query import CTEQuery
 
 from django_generate_series.exceptions import ModelFieldNotSupported
 
@@ -325,7 +327,7 @@ class FromRaw:
         return sql
 
 
-class GenerateSeriesQuery(Query):
+class GenerateSeriesQuery(CTEQuery):
     def __init__(self, *args, _series_func=None, **kwargs):
         self._series_func = _series_func
         return super().__init__(*args, **kwargs)
@@ -347,7 +349,7 @@ class GenerateSeriesQuery(Query):
         return compiler
 
 
-class GenerateSeriesQuerySet(models.QuerySet):
+class GenerateSeriesQuerySet(CTEQuerySet):
     def __init__(self, *args, query=None, _series_func=None, **kwargs):
         empty_query = query is None
         r = super().__init__(*args, query=query, **kwargs)
@@ -359,7 +361,7 @@ class GenerateSeriesQuerySet(models.QuerySet):
         return r
 
 
-class GenerateSeriesManager(models.Manager):
+class GenerateSeriesManager(CTEManager):
     """Custom manager for creating series"""
 
     def _generate_series(self, start, stop, step=None, span=None, include_id=False):
