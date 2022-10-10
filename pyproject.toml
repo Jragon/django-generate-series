@@ -5,7 +5,7 @@ description = "Use Postgres' generate_series to create sequences with Django's O
 authors = ["Jack Linke <jack@watervize.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/jacklinke/django-generate-series/"
+repository = "https://github.com/jragon/django-generate-series/"
 documentation = "https://django-generate-series.readthedocs.io/en/latest/"
 keywords = ["graph", "tree", "dag", "network", "directed"]
 classifiers = [
@@ -13,7 +13,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
